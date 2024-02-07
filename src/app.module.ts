@@ -11,16 +11,17 @@ import { JoinRoomDto } from './model/dto/joinRoom.dto';
 import { AuthModule } from './auth/auth.module';
 import UserRoomsDto from './model/dto/userRooms.dto';
 import RoomUsersDTO from './model/dto/roomUsers.dto';
+import { AppConfig } from './app.config';
 
 @Module({
     imports: [
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'my-postgres',
-            port: 5432,
-            username: 'postgres',
-            password: 'postgres',
-            database: 'demo-chat',
+            host: AppConfig.postgres.host,
+            port: AppConfig.postgres.port,
+            username: AppConfig.postgres.user,
+            password: AppConfig.postgres.password,
+            database: AppConfig.postgres.db,
             entities: [UserDto, RoomDto, ChatMessageDto, JoinRoomDto, UserRoomsDto, RoomUsersDTO],
             synchronize: true,
         }),
