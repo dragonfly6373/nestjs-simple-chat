@@ -9,7 +9,7 @@ import {
     OneToMany,
 } from 'typeorm';
 import { JoinRoomDto } from './joinRoom.dto';
-import { IUser } from '../interface/user.interface';
+import IUser from '../interface/user.interface';
 
 // status: 1 - active | 0 - inactive
 export const UserStatus = {

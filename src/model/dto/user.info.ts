@@ -1,7 +1,7 @@
 /**
  * define User DTO
  */
-import { IUser } from '../interface/user.interface';
+import IUser from '../interface/user.interface';
 
 // status: 1 - active | 0 - inactive
 export const UserStatus = {

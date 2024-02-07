@@ -1,4 +1,4 @@
-import { IChatMessage } from "../interface/chatMessage.interface";
+import IChatMessage from "../interface/chatMessage.interface";
 
 export class ChatMessage implements IChatMessage {
     id: number;

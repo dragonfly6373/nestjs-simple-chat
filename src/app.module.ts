@@ -16,11 +16,11 @@ import RoomUsersDTO from './model/dto/roomUsers.dto';
     imports: [
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'localhost',
+            host: 'my-postgres',
             port: 5432,
-            username: 'poll_user',
-            password: 'poll_password',
-            database: 'poll_db',
+            username: 'postgres',
+            password: 'postgres',
+            database: 'demo-chat',
             entities: [UserDto, RoomDto, ChatMessageDto, JoinRoomDto, UserRoomsDto, RoomUsersDTO],
             synchronize: true,
         }),

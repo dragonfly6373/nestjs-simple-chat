@@ -5,6 +5,7 @@ import {
     OneToMany,
 } from 'typeorm';
 import { JoinRoomDto } from './joinRoom.dto';
+import IRoom from '../interface/room.interface';
 
 export const RoomStatus = {
     ACTIVE: 1,
@@ -12,17 +13,17 @@ export const RoomStatus = {
 };
 
 @Entity()
-export class RoomDto {
+export class RoomDto implements IRoom {
     @PrimaryGeneratedColumn("uuid", {name: "id"})
     id: number;
     @Column({name: "name"})
     name: string;
+    @Column({name: "created_by"})
+    createdBy: number;
     @Column({name: "created_date"})
-    created_date: number;
+    createdDate: number;
     @Column({name: "status"})
     status: number;
-    @Column({type: 'timestamptz', name: "created_by"})
-    created_by: Date;
     @OneToMany(() => JoinRoomDto, joinRoom => joinRoom.roomId)
     roomToUser: JoinRoomDto[];
 }

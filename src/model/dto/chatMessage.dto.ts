@@ -3,7 +3,7 @@ import {
     Column,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { IChatMessage } from '../interface/chatMessage.interface';
+import IChatMessage from '../interface/chatMessage.interface';
 
 @Entity("chat_message")
 export class ChatMessageDto implements IChatMessage {
