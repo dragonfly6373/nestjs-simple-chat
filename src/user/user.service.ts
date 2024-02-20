@@ -12,7 +12,8 @@ export class UserService {
     }
 
     async create(userInfo: User) {
-        const newUser = this.userRepository.create(userInfo);
+        const {loginId, displayName} = userInfo;
+        const newUser = this.userRepository.create({loginId, displayName});
         await this.userRepository.save(newUser);
         return newUser;
     }
