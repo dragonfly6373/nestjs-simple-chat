@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS public.room (
     status smallint DEFAULT 1,
     created_by integer,
     updated_date timestamp DEFAULT current_timestamp,
-    created_date timestamp DEFAULT current_timestamp
+    created_date timestamp DEFAULT current_timestamp,
+    CONSTRAINT pk_room PRIMARY KEY(id)
 );
 
 
@@ -66,7 +67,8 @@ CREATE TABLE IF NOT EXISTS public."user" (
     created_date timestamp DEFAULT current_timestamp,
     updated_date timestamp DEFAULT current_timestamp,
     login_password character varying,
-    display_name character varying
+    display_name character varying,
+    CONSTRAINT pk_user PRIMARY KEY(id)
 );
 
 
@@ -92,12 +94,14 @@ ALTER TABLE public."user" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 CREATE TABLE IF NOT EXISTS public.join_room (
     id integer NOT NULL,
-    room_id character varying NOT NULL,
-    user_id character varying NOT NULL,
+    room_id integer NOT NULL,
+    user_id integer NOT NULL,
     status smallint DEFAULT 0,
     approved_by integer,
     created_date timestamp DEFAULT current_timestamp,
-    CONSTRAINT pk_room_user PRIMARY KEY(room_id, user_id)
+    CONSTRAINT pk_room_user PRIMARY KEY(room_id, user_id),
+    CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES public.room(id),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES public.user(id)
 );
 
 ALTER TABLE public.join_room OWNER TO postgres;
@@ -142,10 +146,10 @@ COMMENT ON COLUMN public.chat_message.message_type IS 'message|media|';
 -- Name: user_rooms_view; Type: VIEW; Schema: public; Owner: postgres
 --
 
-CREATE VIEW IF NOT EXISTS public.user_rooms_view ON
+CREATE OR REPLACE VIEW public.user_rooms_view AS
     SELECT join_room.user_id, room.*
-    FROM join_room
-    LEFT JOIN room
+    FROM public.join_room
+    LEFT JOIN public.room
     ON join_room.room_id = room.id;
 
 ALTER VIEW public.user_rooms_view OWNER TO postgres;
@@ -154,11 +158,11 @@ ALTER VIEW public.user_rooms_view OWNER TO postgres;
 -- Name: room_users_view; Type: VIEW; Schema: public; Owner: postgres
 --
 
-CREATE VIEW IF NOT EXISTS public.room_users_view ON
-    SELECT join_room.room_id, user.*
-    FROM join_room
-    LEFT JOIN user
-    ON join_room.user_id = user.id;
+CREATE OR REPLACE VIEW public.room_users_view AS
+    SELECT join_room.room_id, u.*
+    FROM public.join_room
+    LEFT JOIN public.user AS u
+    ON join_room.user_id = u.id;
 
 ALTER VIEW public.room_users_view OWNER TO postgres;
 

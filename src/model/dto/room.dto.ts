@@ -12,9 +12,9 @@ export const RoomStatus = {
     INACTIVE: 0
 };
 
-@Entity()
+@Entity("room", { synchronize: false })
 export class RoomDto implements IRoom {
-    @PrimaryGeneratedColumn("uuid", {name: "id"})
+    @PrimaryGeneratedColumn('uuid', { name: "id"})
     id: number;
     @Column({name: "name"})
     name: string;
@@ -22,6 +22,8 @@ export class RoomDto implements IRoom {
     createdBy: number;
     @Column({name: "created_date"})
     createdDate: number;
+    @Column({name: "updated_date"})
+    updatedDate: number;
     @Column({name: "status"})
     status: number;
     @OneToMany(() => JoinRoomDto, joinRoom => joinRoom.roomId)
