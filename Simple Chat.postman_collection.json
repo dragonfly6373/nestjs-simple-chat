@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "30d210d1-9e76-457d-942a-a34f8bcd9301",
+		"name": "Simple Chat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3317638"
+	},
+	"item": [
+		{
+			"name": "User SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "loginId",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "displayName",
+							"value": "User 01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/user/signup",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"signup"
+					],
+					"query": [
+						{
+							"key": "loginId",
+							"value": "user1",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"disabled": true
+						},
+						{
+							"key": "displayName",
+							"value": "User A",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "loginId",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/user/login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "loginId",
+							"value": "user1",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Create",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/create?roomName=Room 01",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						"create"
+					],
+					"query": [
+						{
+							"key": "roomName",
+							"value": "Room 01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/delete?roomId=1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId"
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/list",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Members",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/members",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"members"
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/messages?offset=100",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"messages"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "100"
+						}
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Request Join",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/join",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"join"
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Approve Peer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/approve?userId=1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"approve"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Reject Peer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/reject?userId=1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"reject"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room Kick Peer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/room/:roomId/kick?userId=user1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"room",
+						":roomId",
+						"kick"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "user1"
+						}
+					],
+					"variable": [
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MSG Send to Room",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/message/send?roomId=1&type=text&content=some text string",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"message",
+						"send"
+					],
+					"query": [
+						{
+							"key": "roomId",
+							"value": "1"
+						},
+						{
+							"key": "type",
+							"value": "text"
+						},
+						{
+							"key": "content",
+							"value": "some text string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MSG Update",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/message/update?id=1&type=text&content=new text string",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"message",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "type",
+							"value": "text"
+						},
+						{
+							"key": "content",
+							"value": "new text string"
+						},
+						{
+							"key": "roomId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MSG Delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/message/delete?messageId=123&roomId=1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"message",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "messageId",
+							"value": "123"
+						},
+						{
+							"key": "roomId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
