@@ -4,6 +4,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     ManyToOne,
+    JoinColumn,
 } from 'typeorm';
 import { RoomDto } from './room.dto';
 import { UserDto } from './user.dto';
@@ -27,8 +28,8 @@ export class JoinRoomDto {
     status: number;
     @Column({name: "approved_by"})
     approvedBy: number;
-    @ManyToOne(() => RoomDto, (room) => room.roomToUser)
-    public room: RoomDto;
-    @ManyToOne(() => UserDto, (user) => user.userToRoom)
-    public user: UserDto;
+    // @ManyToOne(() => RoomDto, (room) => room.roomToUser)
+    // public room: RoomDto;
+    // @ManyToOne(() => UserDto, (user) => user.userToRoom)
+    // public user: UserDto;
 }

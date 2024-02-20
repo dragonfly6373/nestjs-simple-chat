@@ -1,26 +1,29 @@
-import { Body, Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Query } from '@nestjs/common';
 import { ChatMessageDto } from 'src/model/dto/chatMessage.dto';
 import { MessageService } from './message.service';
 
 @Controller('message')
 export class MessageController {
     constructor(private readonly messageService: MessageService) {}
-    @Get('/sendMessage')
-    async sendMessage(@Body() message: ChatMessageDto) {
+
+    @Get('send')
+    async sendMessage(@Query("roomId") roomId: number, @Query("type") type: string, @Query("content") content: string) {
         console.log("# sendMessage", arguments);
         // TODO: implementation
+        return true;
     }
 
-    @Get(':roomId')
-    async getRoomMessage(@Param('roomId') roomId: number) {
-        let offset = 0;
-        let size = 100
-        this.messageService.getRoomMessages(roomId, offset, size);
+    @Get('update')
+    async updateMessage(@Query("roomId") roomId: number, @Query("type") type: string, @Query("content") content: string) {
+        console.log("# updateMessage", arguments);
+        // TODO: implementation
+        return true;
     }
 
-    @Get('/deleteMessage')
-    async deleteMessage(@Body() messageId: number) {
+    @Get('delete')
+    async deleteMessage(@Query("roomId") roomId: number, @Query() messageId: number) {
         console.log("# deleteMessage", arguments);
         // TODO: implementation
+        return true;
     }
 }
